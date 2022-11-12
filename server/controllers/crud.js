@@ -7,7 +7,7 @@ export const createUser = async (req, res) =>{
     [id,nombre,password],
     (error, rows) =>{
         if (rows) {
-            return res.json({data:"insert ok"})
+            return res.json({data:"INSERT_OK"})
         }else{
             return res.json({data:"error",error})
         }
@@ -15,7 +15,7 @@ export const createUser = async (req, res) =>{
 }
 
 export const viewUser = async (req, res) =>{
-    conexion.query('SELECT * FROM persona WHERE id = ?',[req.params.id],
+    conexion.query('SELECT * FROM persona ',
     (error, rows) =>{
         if(rows){
             res.json({data:rows})
