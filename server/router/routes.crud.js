@@ -4,7 +4,7 @@ import {createUser, viewUser, updateUser, deleteUser} from "../controllers/crud.
 const userRouter= Router()
 
 userRouter.post('/registro',createUser)
-userRouter.get('/consulta/',viewUser)
+userRouter.get('/consulta',viewUser)
 userRouter.put('/actualizar/:id',updateUser)
 userRouter.delete('/eliminar/:id',deleteUser)
 

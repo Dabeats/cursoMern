@@ -1,29 +1,35 @@
-import { useEffect, useState } from "react";
-import { getUserRequest } from "../api/crudApi";
-
+import { useEffect, useState } from 'react'
+import { getUserRequest } from "../api/crudApi" 
+import Tarjet from "../components/Tarjet"
 
 function Inicio() {
 
-  const [users, setUsers] = useState([])
+const [users, setUsers] = useState([])
 
-  useEffect(()=>{
-
+  useEffect(() => {
+ 
     async function loadUser() {
-      const response =await getUserRequest()
+      const response = await getUserRequest()
       setUsers(response.data)
-      console.log(users);
-      console.log(response.data);
     }
-    loadUser()
-  },[])
 
+   loadUser()
+  }, [])
+  
+ 
   return (
     <div>
-      <h1>Usuarios</h1>
-     
-    </div>
 
-  );
+      <h1>Usuarios</h1>
+
+      {
+        users.map(user => (
+          <Tarjet user ={user} key={user.id}/>
+        ))
+      }
+
+    </div>
+  )
 }
 
 export default Inicio

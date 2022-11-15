@@ -18,7 +18,7 @@ export const viewUser = async (req, res) =>{
     conexion.query('SELECT * FROM persona ',
     (error, rows) =>{
         if(rows){
-            res.json({data:rows})
+            res.json(rows)
         }else{
             res.json({data:"error",error})
         }
@@ -40,13 +40,13 @@ export const updateUser = async (req, res) =>{
 
 export const deleteUser = async (req, res) =>{
     
-    conexion.query('DELETE FROM persona WHERE id = ?',
-    [req.params.id],
-    (error,rows) =>{
-        if(rows){
-            return res.json({data:"delete"})
+    const [result] = conexion.query('DELETE FROM persona WHERE id = ?',
+    [req.params.id]);
+    
+        if(result.affectedRorws == 0){
+            return res.status(404).json({message:"paila"})
         }else{
-            return res.json({data:"error",error})
+            return res.status(204) 
         }
-    })
+    
 }
